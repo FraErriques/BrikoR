@@ -1,0 +1,13 @@
+log_full_path_prefix = "./logs/app"
+semaphore = "on"
+verbosity = 2
+
+[db.ITFORS1011]
+url = "postgres://app_user:application-user@ITFORS1011:5432/logging"
+user = "app_user"
+password = "application-user"
+
+[db.Cantor]
+url = "postgres://app_user:application-user@Cantor:5432/logging"
+user = "app_user"
+password = "application-user"

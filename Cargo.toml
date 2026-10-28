@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "common",
+    "entity",
+    "numerical_analysis",
+    "process",
+    "test_console"
+]
+resolver = "2"
