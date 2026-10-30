@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 common = { path = "../common" }
 entity = { path = "../entity" }
+rand = "0.8" # Or whatever latest stable version you prefer

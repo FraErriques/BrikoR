@@ -8,6 +8,8 @@ pub mod connection_provider;
 pub mod log_sink_fs;
 pub mod log_sink_db;
 pub mod string_builder;
+pub mod common_data;
+pub use common_data::{Crash, Couple, Domain, PI};
 
 #[cfg(test)]
 mod tests {
