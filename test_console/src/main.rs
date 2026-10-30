@@ -15,7 +15,7 @@ use std::error::Error;
 async fn main() -> Result<(), Box<dyn Error>> {
 
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
-    let mut logger = LogSinkDb::new("amadriadi", "ITFORS1011", "default").await?;
+    let mut logger = LogSinkDb::new("driope", "ITFORS1011", "default").await?;
 
     println!("LogSinkDb successfully created for server ITFORS1011!");
     logger.trace(

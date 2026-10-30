@@ -163,9 +163,9 @@ impl ComplexMatrix {
             return Err("incompatible indexes for sum".to_string());
         }
         let mut res = ComplexMatrix::new(self.rows, self.cols);
-        for rA in 0..self.rows {
-            for rB in 0..self.cols {
-                res.m[rA][rB] = self.m[rA][rB] + second.m[rA][rB];
+        for r_a in 0..self.rows {
+            for r_b in 0..self.cols {
+                res.m[r_a][r_b] = self.m[r_a][r_b] + second.m[r_a][r_b];
             }
         }
         Ok(res)

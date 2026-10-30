@@ -13,6 +13,8 @@ pub mod complex_matrix;
 pub mod real_integration;
 pub mod integrate;
 pub mod complex_integration;
+// Prime Number Theory & Riemann-Zeta subfolder
+pub mod primes;
 
 // Re-export it so external crates can call Numerics::RealMatrix easily if desired, 
 // or keep it under the module namespace.
