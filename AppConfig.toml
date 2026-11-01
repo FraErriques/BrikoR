@@ -8,6 +8,6 @@ user = "app_user"
 password = "application-user"
 
 [db.Cantor]
-url = "postgres://app_user:application-user@Cantor:5432/logging"
+url = "postgres://app_user:application-user@Cantor:5432/postgres?search_path=logging"
 user = "app_user"
 password = "application-user"
