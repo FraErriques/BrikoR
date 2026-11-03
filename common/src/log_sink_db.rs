@@ -57,7 +57,7 @@ BEGIN
             'CREATE TABLE logging.%I ('
             '    id SERIAL PRIMARY KEY, '
             '    when_time TIMESTAMPTZ NOT NULL, '
-            '    row_nature CHAR(3) NOT NULL, '
+            '    row_nature VARCHAR(5) NOT NULL, '
             '    stack_depth VARCHAR(5) NOT NULL, '
             '    function_name VARCHAR(50) NOT NULL, '
             '    log_content VARCHAR(7919) NOT NULL'
