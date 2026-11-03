@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <database>
+
+        <server>Cantor</server>
+
+        <port>5432</port>
+
+        <database_name>logging</database_name>
+
+        <schema_name>logging</schema_name>
+
+        <user>postgres</user>
+
+        <password>your-password-here</password>
+
+    </database>
+
+</configuration>

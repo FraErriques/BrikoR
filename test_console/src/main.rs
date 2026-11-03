@@ -5,7 +5,7 @@
 // use common::configuration_service::ModernConfig;
 use common::log_sink_db::LogSinkDb;
 use std::error::Error;
-
+use std::fs;
 
 
 // ==========================================
@@ -15,22 +15,45 @@ use std::error::Error;
 async fn main() -> Result<(), Box<dyn Error>> {
 
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
-    let mut logger = LogSinkDb::new("venere", "Cantor", "default").await?;
+    let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
     println!("LogSinkDb successfully created for server Cantor");
+    for c in 0..100 {
     logger.trace(
-        "AAA", // row_nature: &str,    // 3 chars {o,t,c} or {INF,DBG,..}
+        "Rust", // row_nature: &str,    // 3 chars {o,t,c} or {INF,DBG,..}
         "1", // stack_depth: &str,    // call stack depth
         "main", // function_name: &str,  // calling method name
-        "message content" //  log_content: &str,    // message content
+        "namespace nesting==db.schema==logging.logging"
     ).await?;
+    }// for
     
     // Clean up and close connection
     logger.dispose().await;
 
     Ok(())
     
-}
+}// main
+
+
+fn xml_config_read() -> Result<(), Box<dyn std::error::Error>> {
+    let xml = fs::read_to_string("config.xml")?;
+    let doc = roxmltree::Document::parse(&xml)?;
+    let host = doc
+        .descendants()
+        .find(|n| n.has_tag_name("host"))
+        .unwrap()
+        .text()
+        .unwrap();
+    println!("host={}", host);
+    // //----
+    // let db = doc.get_child("database").unwrap();
+    // let server = db.get_child("server").unwrap().get_text().unwrap();
+    // let database = db.get_child("database_name").unwrap().get_text().unwrap();
+    // let schema = db.get_child("schema_name").unwrap().get_text().unwrap();
+    // // and build a PostgreSQL connection string like:
+    // host=Cantor port=5432 dbname=logging user=postgres password=secret
+    Ok(())
+}// xml-DOM-read
 
 /*  cantina
 fn main() {
