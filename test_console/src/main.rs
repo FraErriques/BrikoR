@@ -16,7 +16,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
 	// or config.xml via DOM
-    let mut logger = LogSinkDb::new("era", "ITFORS1011", "default").await?;
+    let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
     // let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
 
