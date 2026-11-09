@@ -11,7 +11,7 @@ pub struct Complex {
 }
 
 impl Complex {
-    pub fn new(real: f64, imaginary: f64) -> Self {
+    pub fn new(real: f64, imaginary: f64) -> Self {//Ctor
         let _ro = {
             let re_sq = nat_pow(real, 2);
             let im_sq = nat_pow(imaginary, 2);

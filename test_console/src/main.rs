@@ -16,12 +16,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
 	// or config.xml via DOM
-    //let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
-    let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
+    let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
+    //let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
 
     println!("LogSinkDb successfully created for server Cantor");
-    for c in 0..100 {
+    for _c in 0..10 {
     logger.trace(
         "Rust", // row_nature: &str,    // 3 chars {o,t,c} or {INF,DBG,..}
         "1", // stack_depth: &str,    // call stack depth
@@ -41,22 +41,23 @@ async fn main() -> Result<(), Box<dyn Error>> {
 fn xml_config_read() -> Result<(), Box<dyn std::error::Error>> {
     let xml = fs::read_to_string("config.xml")?;
     let doc = roxmltree::Document::parse(&xml)?;
-    let host = doc
-        .descendants()
-        .find(|n| n.has_tag_name("host"))
-        .unwrap()
-        .text()
+
+    // Find the 'database' element starting from the root
+    let db = doc
+        .root_element()
+        .children()
+        .find(|n| n.has_tag_name("database"))
         .unwrap();
-    println!("host={}", host);
-    // //----
-    // let db = doc.get_child("database").unwrap();
-    // let server = db.get_child("server").unwrap().get_text().unwrap();
-    // let database = db.get_child("database_name").unwrap().get_text().unwrap();
-    // let schema = db.get_child("schema_name").unwrap().get_text().unwrap();
-    // // and build a PostgreSQL connection string like:
-    // host=Cantor port=5432 dbname=logging user=postgres password=secret
+
+    let server = db.children().find(|n| n.has_tag_name("server")).unwrap().text().unwrap();
+    let database_name = db.children().find(|n| n.has_tag_name("database_name")).unwrap().text().unwrap();
+    let schema = db.children().find(|n| n.has_tag_name("schema_name")).unwrap().text().unwrap();
+
+    println!("Connecting to server={} db={} schema={}", server, database_name, schema);
+    
     Ok(())
 }// xml-DOM-read
+
 
 /*  cantina
 fn main() {
