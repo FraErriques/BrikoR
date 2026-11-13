@@ -1,5 +1,6 @@
 pub mod legacy;
 pub mod modern;
+pub mod database_config;
 
 // Re-export for convenience so users can call Common::configuration_service::ConfigurationService
 pub use legacy::ConfigurationService;

@@ -2,8 +2,9 @@ pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
 
-// common/src/lib.rs
+// Ensure this line is present so the folder/module is registered in the crate root
 pub mod configuration_service;
+// common/src/lib.rs
 pub mod connection_provider;
 pub mod log_sink_fs;
 pub mod log_sink_db;

@@ -4,8 +4,11 @@
 // Using the modern TOML parser
 // use common::configuration_service::ModernConfig;
 use common::log_sink_db::LogSinkDb;
+use common::configuration_service;
 use std::error::Error;
 use std::fs;
+use std::thread;
+use std::time::Duration;
 
 
 // ==========================================
@@ -14,13 +17,16 @@ use std::fs;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
 
+    //agent_read_all_db("config.xml");
+    common::configuration_service::database_config::agent_read_all_db("test_console/config.xml");
+
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
 	// or config.xml via DOM
-    //let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
-    let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
+    let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
+    //let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
 
-    println!("LogSinkDb successfully created for server Cantor");
+    println!("LogSinkDb successfully created for server ITFORS1011");
     for _c in 0..10 {
     logger.trace(
         "Rust", // row_nature: &str,    // 3 chars {o,t,c} or {INF,DBG,..}
@@ -28,6 +34,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
         "main", // function_name: &str,  // calling method name
         "namespace nesting==db.schema==logging.logging"
     ).await?;
+    // sleeper
+    thread::sleep(Duration::from_millis(3000));// milliseconds));
     }// for
     
     // Clean up and close connection
