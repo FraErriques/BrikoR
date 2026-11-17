@@ -22,11 +22,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // Point the database logger to "ITFORS1011" using the default AppConfig.toml
 	// or config.xml via DOM
-    let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
-    //let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
+    //let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
+    let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
-
-    println!("LogSinkDb successfully created for server ITFORS1011");
+    //let hostname: String = "ITFORS1011".to_string();
+    let hostname: String = "Cantor".to_string();
+    println!("LogSinkDb successfully created for server {}", hostname);
     for _c in 0..10 {
     logger.trace(
         "Rust", // row_nature: &str,    // 3 chars {o,t,c} or {INF,DBG,..}
