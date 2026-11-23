@@ -20,13 +20,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
     //agent_read_all_db("config.xml");
     common::configuration_service::database_config::agent_read_all_db("test_console/config.xml");
 
-    // Point the database logger to "ITFORS1011" using the default AppConfig.toml
-	// or config.xml via DOM
-    //let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
-    let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
+	// read config.xml via DOM
+    let mut logger = LogSinkDb::new("mercurio", "ITFORS1011", "default").await?;
+    //let mut logger = LogSinkDb::new("mercurio", "Cantor", "default").await?;
 
-    //let hostname: String = "ITFORS1011".to_string();
-    let hostname: String = "Cantor".to_string();
+    let hostname: String = "ITFORS1011".to_string();
+    //let hostname: String = "Cantor".to_string();
     println!("LogSinkDb successfully created for server {}", hostname);
     for _c in 0..10 {
     logger.trace(
